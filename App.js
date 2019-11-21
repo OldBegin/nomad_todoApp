@@ -31,17 +31,19 @@ class App extends Component {
             placeholder={'New To Do'}
             value={newTodo}
             onChangeText={this._controlNewTodo}
+            returnKeyType={'done'}
+            autoCorrect={false}
           />
           <ScrollView />
         </View>
       </View>
     );
   }
+  _controlNewTodo = text => {
+    console.log('state: ', this.state.newTodo);
+    this.setState({newTodo: text});
+  };
 }
-
-const _controlNewTodo = text => {
-  this.setState({newTodo: text});
-};
 
 const styles = StyleSheet.create({
   container: {
