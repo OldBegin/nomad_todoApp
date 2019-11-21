@@ -1,114 +1,88 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import React from 'react';
+import React, {Component} from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
   View,
   Text,
+  StyleSheet,
+  ScrollView,
+  TextInput,
   StatusBar,
+  Dimensions,
+  Platform,
 } from 'react-native';
+const {height, width} = Dimensions.get('window');
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      newTodo: '',
+    };
+  }
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
+  render() {
+    const {newTodo} = this.state;
+    return (
+      <View style={styles.container}>
+        <StatusBar barStyle="Light-content" />
+        <Text style={styles.title}>Todo App</Text>
+        <View style={styles.card}>
+          <TextInput
+            style={styles.input}
+            placeholder={'New To Do'}
+            value={newTodo}
+            onChangeText={this._controlNewTodo}
+          />
+          <ScrollView />
+        </View>
+      </View>
+    );
+  }
+}
+
+const _controlNewTodo = text => {
+  this.setState({newTodo: text});
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#f23657',
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
+  title: {
+    fontSize: 36,
+    marginTop: 50,
+    fontWeight: '200',
+    color: 'white',
+    marginBottom: 20,
   },
-  body: {
-    backgroundColor: Colors.white,
+  card: {
+    flex: 1,
+    marginTop: 20,
+    backgroundColor: 'white',
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
+    borderColor: '#000000',
+    width: width - 25,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000000',
+        shadowOpacity: 0.5,
+        shadowOffset: {
+          width: 1,
+          height: -1,
+        },
+        shadowRadius: 10,
+      },
+      android: {
+        elevation: 5,
+      },
+    }),
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
+  input: {
     fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
+    borderBottomColor: '#bbb',
+    borderBottomWidth: 1,
   },
 });
-
 export default App;
