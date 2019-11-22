@@ -9,6 +9,8 @@ import {
   Dimensions,
   Platform,
 } from 'react-native';
+import Todo from './Todo';
+
 const {height, width} = Dimensions.get('window');
 
 class App extends Component {
@@ -34,7 +36,9 @@ class App extends Component {
             returnKeyType={'done'}
             autoCorrect={false}
           />
-          <ScrollView />
+          <ScrollView style={styles.scrollView}>
+            <Todo />
+          </ScrollView>
         </View>
       </View>
     );
@@ -62,8 +66,8 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 20,
     backgroundColor: 'white',
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
     borderColor: '#000000',
     width: width - 25,
     ...Platform.select({
@@ -82,9 +86,15 @@ const styles = StyleSheet.create({
     }),
   },
   input: {
+    paddingLeft: 20,
     fontSize: 24,
     borderBottomColor: '#bbb',
     borderBottomWidth: 1,
+  },
+  scrollView: {
+    flex: 1,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
 });
 export default App;
