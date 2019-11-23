@@ -15,8 +15,8 @@ class Todo extends Component {
     isCompleted: false,
   };
   render() {
-    const {isCompleted} = this.state;
-    console.log('state:', isCompleted);
+    const {isCompleted, isEditing} = this.state;
+    console.log('state:', this.state);
     return (
       <View style={styles.container}>
         <View style={styles.column}>
@@ -36,18 +36,28 @@ class Todo extends Component {
             first todo
           </Text>
         </View>
-        <View style={styles.column}>
-          <View style={styles.actionContainer}>
-            <TouchableOpacity>
-              <Text style={styles.actionText}>✏️</Text>
+        {isEditing ? (
+          <View style={styles.actions}>
+            <TouchableOpacity onPress={this._onFinishEditing}>
+              <View style={styles.actionContainer}>
+                <Text>✅</Text>
+              </View>
             </TouchableOpacity>
           </View>
-          <View style={styles.actionContainer}>
+        ) : (
+          <View style={styles.actions}>
+            <TouchableOpacity onPress={this._onStartEditing}>
+              <View style={styles.actionContainer}>
+                <Text>✏️</Text>
+              </View>
+            </TouchableOpacity>
             <TouchableOpacity>
-              <Text style={styles.actionText}>❌</Text>
+              <View style={styles.actionContainer}>
+                <Text>❌</Text>
+              </View>
             </TouchableOpacity>
           </View>
-        </View>
+        )}
       </View>
     );
   }
@@ -58,14 +68,23 @@ class Todo extends Component {
       };
     });
   };
+  _onStartEditing = () => {
+    this.setState({isEditing: true});
+  };
+  _onFinishEditing = () => {
+    this.setState({isEditing: false});
+  };
 }
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     width: width - 30,
+    paddingRight: 10,
+    paddingLeft: 10,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#bbb',
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
   text: {
     fontSize: 24,
@@ -97,6 +116,13 @@ const styles = StyleSheet.create({
     width: width / 2,
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  actions: {
+    flexDirection: 'row',
+  },
+  actionContainer: {
+    marginVertical: 10,
+    marginHorizontal: 10,
   },
 });
 export default Todo;
