@@ -5,6 +5,7 @@ import {
   Text,
   StyleSheet,
   Dimensions,
+  TextInput,
 } from 'react-native';
 
 const {width, height} = Dimensions.get('window');
@@ -13,9 +14,11 @@ class Todo extends Component {
   state = {
     isEditing: false,
     isCompleted: false,
+    todoValue: '',
   };
   render() {
-    const {isCompleted, isEditing} = this.state;
+    const {isCompleted, isEditing, todoValue} = this.state;
+    const {text} = this.props;
     console.log('state:', this.state);
     return (
       <View style={styles.container}>
@@ -28,13 +31,26 @@ class Todo extends Component {
               ]}
             />
           </TouchableOpacity>
-          <Text
-            style={[
-              styles.text,
-              isCompleted ? styles.completedText : styles.unCompletedText,
-            ]}>
-            first todo
-          </Text>
+          {isEditing ? (
+            <TextInput
+              onChangeText={this._onInputTodoText}
+              style={[
+                styles.input,
+                styles.text,
+                isCompleted ? styles.completedText : styles.unCompletedText,
+              ]}
+              multiline={true}
+              value={todoValue}
+            />
+          ) : (
+            <Text
+              style={[
+                styles.text,
+                isCompleted ? styles.completedText : styles.unCompletedText,
+              ]}>
+              {text}
+            </Text>
+          )}
         </View>
         {isEditing ? (
           <View style={styles.actions}>
@@ -73,6 +89,9 @@ class Todo extends Component {
   };
   _onFinishEditing = () => {
     this.setState({isEditing: false});
+  };
+  _onInputTodoText = text => {
+    this.setState({todoValue: text});
   };
 }
 const styles = StyleSheet.create({
@@ -123,6 +142,9 @@ const styles = StyleSheet.create({
   actionContainer: {
     marginVertical: 10,
     marginHorizontal: 10,
+  },
+  input: {
+    width: width / 2,
   },
 });
 export default Todo;

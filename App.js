@@ -37,7 +37,7 @@ class App extends Component {
             autoCorrect={false}
           />
           <ScrollView style={styles.scrollView}>
-            <Todo />
+            <Todo text="My First Todo" />
           </ScrollView>
         </View>
       </View>
