@@ -25,7 +25,7 @@ class App extends Component {
     const {newTodo} = this.state;
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="Light-content" />
+        <StatusBar barStyle="light-content" />
         <Text style={styles.title}>Todo App</Text>
         <View style={styles.card}>
           <TextInput
@@ -37,7 +37,7 @@ class App extends Component {
             autoCorrect={false}
           />
           <ScrollView style={styles.scrollView}>
-            <Todo text="My First Todo" />
+            <Todo text="My First Todoooo" />
           </ScrollView>
         </View>
       </View>
@@ -88,6 +88,8 @@ const styles = StyleSheet.create({
   input: {
     paddingLeft: 20,
     fontSize: 24,
+    height: 60,
+
     borderBottomColor: '#bbb',
     borderBottomWidth: 1,
   },

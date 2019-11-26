@@ -35,8 +35,8 @@ class Todo extends Component {
             <TextInput
               onChangeText={this._onInputTodoText}
               style={[
-                styles.input,
                 styles.text,
+                styles.input,
                 isCompleted ? styles.completedText : styles.unCompletedText,
               ]}
               multiline={true}
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 24,
-    marginVertical: 20,
+    marginVertical: 25,
     marginLeft: 10,
   },
   completedText: {
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   actionContainer: {
-    marginVertical: 10,
+    marginVertical: 25,
     marginHorizontal: 10,
   },
   input: {
