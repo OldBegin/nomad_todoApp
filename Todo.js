@@ -7,10 +7,18 @@ import {
   Dimensions,
   TextInput,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 const {width, height} = Dimensions.get('window');
 
+
+
 class Todo extends Component {
+  static propTypes={
+    text: this.PropTypes.string.isRequired,
+    isCompleted: 
+
+  }
   state = {
     isEditing: false,
     isCompleted: false,
@@ -34,7 +42,6 @@ class Todo extends Component {
           </TouchableOpacity>
           {isEditing ? (
             <TextInput
-              onChangeText={this._onInputTodoText}
               style={[
                 styles.text,
                 styles.input,
@@ -42,6 +49,9 @@ class Todo extends Component {
               ]}
               multiline={true}
               value={todoValue}
+              onChangeText={this._onInputTodoText}
+              onBlur={this._onFinishEditing}
+              returnKeyType={'done'}
             />
           ) : (
             <Text
@@ -145,6 +155,7 @@ const styles = StyleSheet.create({
   },
   input: {
     width: width / 2,
+    paddingLeft: 5,
   },
 });
 export default Todo;
