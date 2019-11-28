@@ -29,6 +29,7 @@ class App extends Component {
         <Text style={styles.title}>Todo App</Text>
         <View style={styles.card}>
           <TextInput
+            blurOnSubmit="true"
             style={styles.input}
             placeholder={'New To Do'}
             value={newTodo}
@@ -37,7 +38,10 @@ class App extends Component {
             autoCorrect={false}
           />
           <ScrollView style={styles.scrollView}>
-            <Todo text="My First Todoooo" />
+            <Todo text="My First Todo" />
+            <Todo text="My Second Todo" />
+            <Todo text="My Third Todo" />
+            <Todo text="My Third Todo" />
           </ScrollView>
         </View>
       </View>

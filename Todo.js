@@ -17,9 +17,10 @@ class Todo extends Component {
     todoValue: '',
   };
   render() {
+    console.log('state:', this.state);
     const {isCompleted, isEditing, todoValue} = this.state;
     const {text} = this.props;
-    console.log('state:', this.state);
+
     return (
       <View style={styles.container}>
         <View style={styles.column}>
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 24,
-    marginVertical: 25,
+    marginVertical: 10,
     marginLeft: 10,
   },
   completedText: {
@@ -134,13 +135,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: width / 2,
     alignItems: 'center',
-    justifyContent: 'space-between',
   },
   actions: {
     flexDirection: 'row',
   },
   actionContainer: {
-    marginVertical: 25,
+    marginVertical: 30,
     marginHorizontal: 10,
   },
   input: {
