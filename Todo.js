@@ -9,21 +9,21 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-const {width, height} = Dimensions.get('window');
-
-
+const {width} = Dimensions.get('window');
 
 class Todo extends Component {
-  static propTypes={
-    text: this.PropTypes.string.isRequired,
-    isCompleted: 
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      isEditing: false,
+      todoValue: props.text,
+    };
   }
-  state = {
-    isEditing: false,
-    isCompleted: false,
-    todoValue: '',
+  static propTypes = {
+    text: PropTypes.string.isRequired,
+    isCompleted: PropTypes.bool.isRequired,
   };
+
   render() {
     console.log('state:', this.state);
     const {isCompleted, isEditing, todoValue} = this.state;

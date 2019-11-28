@@ -15,7 +15,7 @@ Todo-style: Action 버튼 2종(편집,삭제) 스타일 코딩완료
 Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 / onPress 이벤트 핸들러 2종( _onStartEdiging, _onFinishEditing) 생성
 
 11/28 집
-# App-function: App의 TextInput으로 text를 추가하면 투두가 리스트에 추가됨. - (본앱의 주 기능)
+## App-function: App의 TextInput으로 text를 추가하면 투두가 리스트에 추가됨. - (본앱의 주 기능)
 
 1. 로딩중에 나타날 화면을 만들어 로딩중엔 로딩컴퍼넌트를 보여주고 로딩이 완료되면 메인컴퍼넌트를 보여주는 기능
 
@@ -43,7 +43,7 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
 
 3. TextInput 으로 작성한 내용을 리스트에 추가
 
-  /* todo에 추가할 사항을 만들기위해 오브젝트(newTodoObject)를 생성해서 
+  /* todo컴퍼넌트에 넘겨줄 프롭스덩어리를 만들기위해 오브젝트(newTodoObject)를 생성해서 
   기존의 state인 prevState(예약어가 아닌 setState 내부의 함수의 첫번째 파라메타로 전달되는 사용자지정인수명) 
   에 추가로 덧붙이는 작업.
 
@@ -58,7 +58,7 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
   */
 
   //_addTodo 메소드 전체코드
-  
+
   _addTodo = () => {
       const {newTodo} = this.state;
       if (newTodo !== '') {
@@ -84,3 +84,6 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
         });
       }
     };
+    // 만들어진 오브젝트를 랜더링
+
+    {Object.values(toDos).map(todo => ( <Todo key={toDos.id} {...todo} /> )
