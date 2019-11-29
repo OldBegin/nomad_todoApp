@@ -155,3 +155,22 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
     });
   };
   ```
+
+### 투두내용을 수정해서 적용했을때 업데이트하는 핸들러
+  ```js
+   _todoUpdate = (id, updatedText) => {
+    this.setState(prevState => {
+      const newState = {
+        ...prevState,
+        toDos: {
+          ...prevState.toDos,
+          [id]: {
+            ...prevState.toDos[id],
+            text: updatedText,
+          },
+        },
+      };
+      return {...newState};
+    });
+  };
+  ```
