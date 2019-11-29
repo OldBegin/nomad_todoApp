@@ -26,6 +26,7 @@ class Todo extends Component {
     id: PropTypes.string.isRequired,
     onChangeComplete: PropTypes.func.isRequired,
     onChangeUncomplete: PropTypes.func.isRequired,
+    onTodoUpdate: PropTypes.func.isRequired,
   };
 
   render() {
@@ -105,6 +106,8 @@ class Todo extends Component {
     this.setState({isEditing: true});
   };
   _onFinishEditing = () => {
+    const {id, onTodoUpdate} = this.props;
+    onTodoUpdate(id, this.state.todoValue);
     this.setState({isEditing: false});
   };
   _onInputTodoText = text => {

@@ -59,6 +59,7 @@ class App extends Component {
                 onDeleteTodo={this._deleteTodo}
                 onChangeComplete={this._changeComplete}
                 onChangeUncomplete={this._changeUncomplete}
+                onTodoUpdate={this._todoUpdate}
               />
             ))}
           </ScrollView>
@@ -66,6 +67,21 @@ class App extends Component {
       </View>
     );
   }
+  _todoUpdate = (id, updatedText) => {
+    this.setState(prevState => {
+      const newState = {
+        ...prevState,
+        toDos: {
+          ...prevState.toDos,
+          [id]: {
+            ...prevState.toDos[id],
+            text: updatedText,
+          },
+        },
+      };
+      return {...newState};
+    });
+  };
   _changeUncomplete = id => {
     console.log('here is Uncomplete', id);
     this.setState(prevState => {
@@ -79,9 +95,7 @@ class App extends Component {
           },
         },
       };
-      return {
-        ...newState,
-      };
+      return {...newState};
     });
   };
   _changeComplete = id => {
@@ -97,9 +111,7 @@ class App extends Component {
           },
         },
       };
-      return {
-        ...newState,
-      };
+      return {...newState};
     });
   };
   _setNewTodo = text => {

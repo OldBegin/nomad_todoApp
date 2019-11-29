@@ -14,18 +14,19 @@ Todo-style: Action 버튼 스타일 코딩중
 Todo-style: Action 버튼 2종(편집,삭제) 스타일 코딩완료
 Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 / onPress 이벤트 핸들러 2종( _onStartEdiging, _onFinishEditing) 생성
 
-11/28 집
-## App-function: App의 TextInput으로 text를 추가하면 투두가 리스트에 추가됨. - (본앱의 주 기능)
+### 11/28 집
+### App-function: App의 TextInput으로 text를 추가하면 투두가 리스트에 추가됨. - (본앱의 주 기능)
 
 1. 로딩중에 나타날 화면을 만들어 로딩중엔 로딩컴퍼넌트를 보여주고 로딩이 완료되면 메인컴퍼넌트를 보여주는 기능
 
   // 컴퍼넌트가 준비되면 호출되는 라이프사이클 미들웨어
-  - componentDidMount = () => {
+  
+   componentDidMount = () => {
       this._loadTodos();
     };
 
   // state를 변경하여 메인 로딩페이지를 랜더링
-  - _loadTodos = () => {
+   _loadTodos = () => {
       this.setState({loadedTodos: true});
     };
 
@@ -43,16 +44,17 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
 
 3. TextInput 으로 작성한 내용을 리스트에 추가
 
+```js
   /* todo컴퍼넌트에 넘겨줄 프롭스덩어리를 만들기위해 오브젝트(newTodoObject)를 생성해서 
   기존의 state인 prevState(예약어가 아닌 setState 내부의 함수의 첫번째 파라메타로 전달되는 사용자지정인수명) 
-  에 추가로 덧붙이는 작업.
+  에 추가로 덧붙이는 작업. */
 
-  newState { //이전스테이트에 추가할 스테이트자료를 더해 최신 스테이트를 만듬
-    ...prevState // 이전스테이트
-    newTodo='' // 오브젝트덩어리에 이미 내용을 넣었으므로 비움,
+  newState {               // 이전스테이트에 추가할 스테이트자료를 더해 최신 스테이트를 만듬
+    ...prevState           // 이전스테이트
+    newTodo=''             // 오브젝트덩어리에 이미 내용을 넣었으므로 비움,
     todos{ 
-      ... prevState.todos, //이전스테이트의 오브젝트덩어리
-      newTodoObject, //  현재만들어진오브젝트덩어리인
+      ... prevState.todos, // 이전스테이트의 오브젝트덩어리
+      newTodoObject,       // 현재만들어진오브젝트덩어리인
     })
   }
   */
@@ -87,16 +89,17 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
     // 만들어진 오브젝트를 랜더링
 
     {Object.values(toDos).map(todo => ( <Todo key={toDos.id} {...todo} /> )
-
+```
 
 11/29 회사
 
-1. App-fuction: _deleteTodo in App , coded function _changeUncomplete, function _changeComplete in App 
+## App-fuction: _deleteTodo in App , coded function _changeUncomplete, function _changeComplete in App 
 
-## _deleteTodo 메소드는 Todo comp 의 x OnPress 이벤트 핸들러임 
-## Todo Component 는 App Component로부터 props로 넘겨받아 가지고있던 id값을 이 핸들러에 넘겨주고
-## 핸들러는 App의 state를 변경하여 해당 컴퍼넌트를 삭제하여 랜더링항.
+### _deleteTodo 메소드는 Todo comp 의 x OnPress 이벤트 핸들러임 
+### Todo Component 는 App Component로부터 props로 넘겨받아 가지고있던 id값을 이 핸들러에 넘겨주고
+### 핸들러는 App의 state를 변경하여 해당 컴퍼넌트를 삭제하여 랜더링항.
 
+```js
   _deleteTodo = id => {              // Todo Component로부터 id값을 인수로 넘겨받음.
     this.setState(prevState => {     // 기존의 state값을 prevState인수로 가져움
       const toDos = prevState.toDos; // 기존의 toDos값을 받아옴
@@ -110,7 +113,7 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
       };
     });
   };
-
+```
 ## _changeComplete 와 _changeUncomplete 는 Todo comp 의 circle부분의 Onpress 이벤트의 핸들러이다.
 ## onPress 이벤트는 우선 Todo component 내부의 메소드인  _onToggleComplete 를 호출하고
 ## 두 메소드는 _onToggleComplete 함수 본체내부에서 if문 분기를 통해 각 핸들러가 호출된다.
