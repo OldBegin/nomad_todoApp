@@ -174,3 +174,17 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
     });
   };
   ```
+
+  ###14. states 내용을 디스크에 저장하기
+  11/29-집
+
+  ### 강좌에서 사용하는 리엑트네이티브 내장 스토리지는 추후 제거될것이므로 아래 링크를 참조하여 async-storage 패키지를 인스톨함
+  https://github.com/react-native-community/async-storage
+
+  ```js
+  패키지설치
+  npm add @react-native-community/async-storage --save
+
+  링크
+  react-native link @react-native-community/async-storage
+
