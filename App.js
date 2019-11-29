@@ -12,7 +12,7 @@ import {
 import Todo from './Todo';
 import uuidv1 from 'uuid/v1';
 
-const {height, width} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 class App extends Component {
   constructor() {
@@ -53,13 +53,55 @@ class App extends Component {
           />
           <ScrollView style={styles.scrollView}>
             {Object.values(toDos).map(todo => (
-              <Todo key={toDos.id} {...todo} onDeleteTodo={this._deleteTodo} />
+              <Todo
+                key={todo.id}
+                {...todo}
+                onDeleteTodo={this._deleteTodo}
+                onChangeComplete={this._changeComplete}
+                onChangeUncomplete={this._changeUncomplete}
+              />
             ))}
           </ScrollView>
         </View>
       </View>
     );
   }
+  _changeUncomplete = id => {
+    console.log('here is Uncomplete', id);
+    this.setState(prevState => {
+      const newState = {
+        ...prevState,
+        toDos: {
+          ...prevState.toDos,
+          [id]: {
+            ...prevState.toDos[id],
+            isCompleted: false,
+          },
+        },
+      };
+      return {
+        ...newState,
+      };
+    });
+  };
+  _changeComplete = id => {
+    console.log('here is Complete');
+    this.setState(prevState => {
+      const newState = {
+        ...prevState,
+        toDos: {
+          ...prevState.toDos,
+          [id]: {
+            ...prevState.toDos[id],
+            isCompleted: true,
+          },
+        },
+      };
+      return {
+        ...newState,
+      };
+    });
+  };
   _setNewTodo = text => {
     console.log('state: ', this.state.newTodo);
     this.setState({newTodo: text});
@@ -88,7 +130,7 @@ class App extends Component {
         const newToDoObject = {
           [ID]: {
             id: ID,
-            isComleted: false,
+            isCompleted: false,
             text: newTodo,
             createdAt: Date.now(),
           },

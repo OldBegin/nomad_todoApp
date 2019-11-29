@@ -24,13 +24,14 @@ class Todo extends Component {
     isCompleted: PropTypes.bool.isRequired,
     onDeleteTodo: PropTypes.func.isRequired,
     id: PropTypes.string.isRequired,
+    onChangeComplete: PropTypes.func.isRequired,
+    onChangeUncomplete: PropTypes.func.isRequired,
   };
 
   render() {
-    console.log('props in Todo:', this.props);
-    console.log('state in Todo:', this.state);
+    console.log('Props in Todo:', this.props);
     const {isEditing, todoValue} = this.state;
-    const {text, isCompleted, id, onDeleteTodo} = this.props;
+    const {id, text, onDeleteTodo, isCompleted} = this.props;
 
     return (
       <View style={styles.container}>
@@ -92,11 +93,13 @@ class Todo extends Component {
     );
   }
   _onToggleComplete = () => {
-    this.setState(prevState => {
-      return {
-        isCompleted: !prevState.isCompleted,
-      };
-    });
+    const {onChangeComplete, onChangeUncomplete, id, isCompleted} = this.props;
+    console.log('props in Todo:', isCompleted);
+    if (isCompleted) {
+      onChangeUncomplete(id);
+    } else {
+      onChangeComplete(id);
+    }
   };
   _onStartEditing = () => {
     this.setState({isEditing: true});
@@ -110,6 +113,7 @@ class Todo extends Component {
 }
 const styles = StyleSheet.create({
   container: {
+    justifyContent: 'space-between',
     flexDirection: 'row',
     width: width - 30,
     paddingRight: 10,
@@ -117,7 +121,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#bbb',
     alignItems: 'center',
-    justifyContent: 'space-between',
   },
   text: {
     fontSize: 24,

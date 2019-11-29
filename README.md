@@ -87,3 +87,67 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
     // 만들어진 오브젝트를 랜더링
 
     {Object.values(toDos).map(todo => ( <Todo key={toDos.id} {...todo} /> )
+
+
+11/29 회사
+
+1. App-fuction: _deleteTodo in App , coded function _changeUncomplete, function _changeComplete in App 
+
+## _deleteTodo 메소드는 Todo comp 의 x OnPress 이벤트 핸들러임 
+## Todo Component 는 App Component로부터 props로 넘겨받아 가지고있던 id값을 이 핸들러에 넘겨주고
+## 핸들러는 App의 state를 변경하여 해당 컴퍼넌트를 삭제하여 랜더링항.
+
+  _deleteTodo = id => {              // Todo Component로부터 id값을 인수로 넘겨받음.
+    this.setState(prevState => {     // 기존의 state값을 prevState인수로 가져움
+      const toDos = prevState.toDos; // 기존의 toDos값을 받아옴
+      delete toDos[id];              // 받아온 toDos중 인수로넘겨받은 id값을 가진 오브젝트 덩어리를 삭제함.
+      const newState = {             // 새로운스테이트를 저장할 변수를 생성하여
+        ...prevState,                // 우선 기존스테이트를 나열하고
+        ...toDos,                    // 삭제완료된 toDos 객체를 추가로 나열하여 저장하고
+      };
+      return {
+        ...newState,                 // 저장된 스테이트를 나열하여 리턴
+      };
+    });
+  };
+
+## _changeComplete 와 _changeUncomplete 는 Todo comp 의 circle부분의 Onpress 이벤트의 핸들러이다.
+## onPress 이벤트는 우선 Todo component 내부의 메소드인  _onToggleComplete 를 호출하고
+## 두 메소드는 _onToggleComplete 함수 본체내부에서 if문 분기를 통해 각 핸들러가 호출된다.
+## 핸들러를 호출한 Todo Component 는 자신의 id 값을 인수로 전달하며, 핸들러는 App Component의 state 내의
+## toDos객체배열중이 id 해당하는 isComplete 값을 변경하여 랜더링한다.
+
+  _changeUncomplete = id => {          // Todo Component로부터 id값을 받아오고
+    this.setState(prevState => {       // App Component의 기존 State값을 prevState인수로 받아와서
+      const newState = {               // 갱신된 오브젝트를 저장할 변수를 newState로 선언하고
+        ...prevState,                  // 우선 이전 스테이트를 나열하고
+        toDos: {                       // toDos객체배열을 열어제껴서
+          ...prevState.toDos,          // 나머지것들은 기존 state를 나열하고
+          [id]: {                      // 객체배열중 인수로 넘어온 id와 동일한 객체를 열어제껴서
+            ...prevState.toDos[id],    // 이또한 id와 해당되는 기존stste를 가져와 나열하고
+            isCompleted: false,        // iscompleted 만 false로 변경한다.
+
+      };
+      return {
+        ...newState,
+      };
+    });
+  };
+  _changeComplete = id => {
+    console.log('here is Complete');
+    this.setState(prevState => {
+      const newState = {
+        ...prevState,
+        toDos: {
+          ...prevState.toDos,
+          [id]: {
+            ...prevState.toDos[id],
+            isCompleted: true,
+          },
+        },
+      };
+      return {
+        ...newState,
+      };
+    });
+  };
