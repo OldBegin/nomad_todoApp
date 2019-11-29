@@ -22,12 +22,15 @@ class Todo extends Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
     isCompleted: PropTypes.bool.isRequired,
+    onDeleteTodo: PropTypes.func.isRequired,
+    id: PropTypes.string.isRequired,
   };
 
   render() {
-    console.log('state:', this.state);
-    const {isCompleted, isEditing, todoValue} = this.state;
-    const {text} = this.props;
+    console.log('props in Todo:', this.props);
+    console.log('state in Todo:', this.state);
+    const {isEditing, todoValue} = this.state;
+    const {text, isCompleted, id, onDeleteTodo} = this.props;
 
     return (
       <View style={styles.container}>
@@ -78,7 +81,7 @@ class Todo extends Component {
                 <Text>✏️</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPressOut={() => onDeleteTodo(id)}>
               <View style={styles.actionContainer}>
                 <Text>❌</Text>
               </View>

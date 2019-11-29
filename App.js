@@ -29,7 +29,7 @@ class App extends Component {
 
   render() {
     const {newTodo, loadedTodos, toDos} = this.state;
-    console.log('todos:', toDos);
+    console.log('todos in App:', toDos);
     if (!loadedTodos) {
       return (
         <View style={styles.loadingContainer}>
@@ -53,7 +53,7 @@ class App extends Component {
           />
           <ScrollView style={styles.scrollView}>
             {Object.values(toDos).map(todo => (
-              <Todo key={toDos.id} {...todo} />
+              <Todo key={toDos.id} {...todo} onDeleteTodo={this._deleteTodo} />
             ))}
           </ScrollView>
         </View>
@@ -66,6 +66,19 @@ class App extends Component {
   };
   _loadTodos = () => {
     this.setState({loadedTodos: true});
+  };
+  _deleteTodo = id => {
+    this.setState(prevState => {
+      const toDos = prevState.toDos;
+      delete toDos[id];
+      const newState = {
+        ...prevState,
+        ...toDos,
+      };
+      return {
+        ...newState,
+      };
+    });
   };
   _addTodo = () => {
     const {newTodo} = this.state;
