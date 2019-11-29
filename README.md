@@ -186,5 +186,33 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
   npm add @react-native-community/async-storage --save
 
   링크
-  react-native link @react-native-community/async-storage
+  npm add react-native-webview
+  cd ios && pod install && cd .. # CocoaPods on iOS needs this extra step
+
+  ```
+### 사용 
+  ```js
+    // Store data: state 의 toDos 오브젝트를 스트링으로 형변환하여 디스크에 저장 //
+  _saveTodos = async newTodos => {
+    try {
+      console.log('saveTodos: ', this.state.loadedTodos);
+      await AsyncStorage.setItem('toDos', JSON.stringify(newTodos));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  // Read data: 디스크에 저장된 스트링형태의 toDos를 오브젝트로 파싱하여 setState
+  _loadTodos = async () => {
+    try {
+      const value = await AsyncStorage.getItem('toDos');
+      if (value !== null) {
+        const parsedTodos = JSON.parse(value);
+        this.setState({loadedTodos: true, toDos: parsedTodos});
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  ```
 

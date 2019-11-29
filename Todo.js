@@ -30,7 +30,7 @@ class Todo extends Component {
   };
 
   render() {
-    console.log('Props in Todo:', this.props);
+    //console.log('Props in Todo:', this.props);
     const {isEditing, todoValue} = this.state;
     const {id, text, onDeleteTodo, isCompleted} = this.props;
 

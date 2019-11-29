@@ -25,12 +25,13 @@ class App extends Component {
     };
   }
   componentDidMount = () => {
+    console.log('componentDidMount: ', this.state.loadedTodos);
     this._loadTodos();
   };
 
   render() {
     const {newTodo, loadedTodos, toDos} = this.state;
-    console.log('todos in App:', toDos);
+    //console.log('todos in App:', toDos);
     if (!loadedTodos) {
       return (
         <View style={styles.loadingContainer}>
@@ -53,43 +54,45 @@ class App extends Component {
             onSubmitEditing={this._addTodo}
           />
           <ScrollView style={styles.scrollView}>
-            {Object.values(toDos).map(todo => (
-              <Todo
-                key={todo.id}
-                {...todo}
-                onDeleteTodo={this._deleteTodo}
-                onChangeComplete={this._changeComplete}
-                onChangeUncomplete={this._changeUncomplete}
-                onTodoUpdate={this._todoUpdate}
-              />
-            ))}
+            {Object.values(toDos)
+              .reverse()
+              .map(todo => (
+                <Todo
+                  key={todo.id}
+                  {...todo}
+                  onDeleteTodo={this._deleteTodo}
+                  onChangeComplete={this._changeComplete}
+                  onChangeUncomplete={this._changeUncomplete}
+                  onTodoUpdate={this._todoUpdate}
+                />
+              ))}
           </ScrollView>
         </View>
       </View>
     );
   }
-  // state 의 toDos 오브젝트를 스트링으로 형변환하여 디스크에 저장 //
+  // Store data: state 의 toDos 오브젝트를 스트링으로 형변환하여 디스크에 저장 //
   _saveTodos = async newTodos => {
     try {
-      const saveTodos = await AsyncStorage.setItem(
-        'toDos',
-        JSON.stringify(newTodos),
-      );
+      console.log('saveTodos: ', this.state.loadedTodos);
+      await AsyncStorage.setItem('toDos', JSON.stringify(newTodos));
     } catch (e) {
       console.log(e);
     }
   };
 
-  // 디스크에 저장된 스트링형태의 toDos를 오브젝트로 파싱하여 setState
-  // _loadTodos = async () => {
-  //   try {
-  //     const toDos = await AsyncStorage.getItem('toDos');
-  //     const parsedTodos = JSON.parse(toDos);
-  //     this.setState({loadedTodos: true, toDos: parsedTodos});
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  // Read data: 디스크에 저장된 스트링형태의 toDos를 오브젝트로 파싱하여 setState
+  _loadTodos = async () => {
+    try {
+      const value = await AsyncStorage.getItem('toDos');
+      if (value !== null) {
+        const parsedTodos = JSON.parse(value);
+        this.setState({loadedTodos: true, toDos: parsedTodos});
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   _todoUpdate = (id, updatedText) => {
     this.setState(prevState => {
@@ -143,9 +146,6 @@ class App extends Component {
   };
   _setNewTodo = text => {
     this.setState({newTodo: text});
-  };
-  _loadTodos = () => {
-    this.setState({loadedTodos: true});
   };
   _deleteTodo = id => {
     this.setState(prevState => {
