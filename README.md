@@ -116,7 +116,7 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
 ## 두 메소드는 _onToggleComplete 함수 본체내부에서 if문 분기를 통해 각 핸들러가 호출된다.
 ## 핸들러를 호출한 Todo Component 는 자신의 id 값을 인수로 전달하며, 핸들러는 App Component의 state 내의
 ## toDos객체배열중이 id 해당하는 isComplete 값을 변경하여 랜더링한다.
-
+```js
   _changeUncomplete = id => {          // Todo Component로부터 id값을 받아오고
     this.setState(prevState => {       // App Component의 기존 State값을 prevState인수로 받아와서
       const newState = {               // 갱신된 오브젝트를 저장할 변수를 newState로 선언하고
@@ -151,3 +151,4 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
       };
     });
   };
+  ```
