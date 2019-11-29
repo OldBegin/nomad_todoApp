@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import Todo from './Todo';
 import uuidv1 from 'uuid/v1';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const {width} = Dimensions.get('window');
 
@@ -67,6 +68,29 @@ class App extends Component {
       </View>
     );
   }
+  // state 의 toDos 오브젝트를 스트링으로 형변환하여 디스크에 저장 //
+  _saveTodos = async newTodos => {
+    try {
+      const saveTodos = await AsyncStorage.setItem(
+        'toDos',
+        JSON.stringify(newTodos),
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  // 디스크에 저장된 스트링형태의 toDos를 오브젝트로 파싱하여 setState
+  // _loadTodos = async () => {
+  //   try {
+  //     const toDos = await AsyncStorage.getItem('toDos');
+  //     const parsedTodos = JSON.parse(toDos);
+  //     this.setState({loadedTodos: true, toDos: parsedTodos});
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
   _todoUpdate = (id, updatedText) => {
     this.setState(prevState => {
       const newState = {
@@ -79,6 +103,7 @@ class App extends Component {
           },
         },
       };
+      this._saveTodos(newState.toDos);
       return {...newState};
     });
   };
@@ -95,6 +120,7 @@ class App extends Component {
           },
         },
       };
+      this._saveTodos(newState.todos);
       return {...newState};
     });
   };
@@ -111,11 +137,11 @@ class App extends Component {
           },
         },
       };
+      this._saveTodos(newState.toDos);
       return {...newState};
     });
   };
   _setNewTodo = text => {
-    console.log('state: ', this.state.newTodo);
     this.setState({newTodo: text});
   };
   _loadTodos = () => {
@@ -129,6 +155,7 @@ class App extends Component {
         ...prevState,
         ...toDos,
       };
+      this._saveTodos(newState.toDos);
       return {
         ...newState,
       };
@@ -155,6 +182,7 @@ class App extends Component {
             ...newToDoObject,
           },
         };
+        this._saveTodos(newState.toDos);
         return {...newState};
       });
     }
