@@ -83,7 +83,11 @@ class Todo extends Component {
                 <Text>✏️</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity onPressOut={() => onDeleteTodo(id)}>
+            <TouchableOpacity
+              onPressOut={event => {
+                event.stopPropagation;
+                onDeleteTodo(id);
+              }}>
               <View style={styles.actionContainer}>
                 <Text>❌</Text>
               </View>
@@ -93,7 +97,8 @@ class Todo extends Component {
       </View>
     );
   }
-  _onToggleComplete = () => {
+  _onToggleComplete = event => {
+    event.stopPropagation();
     const {onChangeComplete, onChangeUncomplete, id, isCompleted} = this.props;
     console.log('props in Todo:', isCompleted);
     if (isCompleted) {
@@ -102,10 +107,12 @@ class Todo extends Component {
       onChangeComplete(id);
     }
   };
-  _onStartEditing = () => {
+  _onStartEditing = event => {
+    event.stopPropagation();
     this.setState({isEditing: true});
   };
-  _onFinishEditing = () => {
+  _onFinishEditing = event => {
+    event.stopPropagation();
     const {id, onTodoUpdate} = this.props;
     onTodoUpdate(id, this.state.todoValue);
     this.setState({isEditing: false});
