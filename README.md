@@ -14,13 +14,13 @@ Todo-style: Action 버튼 스타일 코딩중
 Todo-style: Action 버튼 2종(편집,삭제) 스타일 코딩완료
 Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 / onPress 이벤트 핸들러 2종( _onStartEdiging, _onFinishEditing) 생성
 
-### 11/28 집
+11/28 집
+========
 ### App-function: App의 TextInput으로 text를 추가하면 투두가 리스트에 추가됨. - (본앱의 주 기능)
 
-1. 로딩중에 나타날 화면을 만들어 로딩중엔 로딩컴퍼넌트를 보여주고 로딩이 완료되면 메인컴퍼넌트를 보여주는 기능
-
-  // 컴퍼넌트가 준비되면 호출되는 라이프사이클 미들웨어
-  
+#### 1. 로딩중에 나타날 화면을 만들어 로딩중엔 로딩컴퍼넌트를 보여주고 로딩이 완료되면 메인컴퍼넌트를 보여주는 기능
+```js  
+// 컴퍼넌트가 준비되면 호출되는 라이프사이클 미들웨어
    componentDidMount = () => {
       this._loadTodos();
     };
@@ -29,6 +29,7 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
    _loadTodos = () => {
       this.setState({loadedTodos: true});
     };
+```
 
 2. 고유아이디를 자동으로 생성하는 패키지 추가
  - npm install uuid --save //add package from npm
@@ -92,9 +93,7 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
 ```
 
 11/29 회사
-
-## App-fuction: _deleteTodo in App , coded function _changeUncomplete, function _changeComplete in App 
-
+=========
 ### _deleteTodo 메소드는 Todo comp 의 x OnPress 이벤트 핸들러임 
 ### Todo Component 는 App Component로부터 props로 넘겨받아 가지고있던 id값을 이 핸들러에 넘겨주고
 ### 핸들러는 App의 state를 변경하여 해당 컴퍼넌트를 삭제하여 랜더링항.
@@ -114,11 +113,11 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
     });
   };
 ```
-## _changeComplete 와 _changeUncomplete 는 Todo comp 의 circle부분의 Onpress 이벤트의 핸들러이다.
-## onPress 이벤트는 우선 Todo component 내부의 메소드인  _onToggleComplete 를 호출하고
-## 두 메소드는 _onToggleComplete 함수 본체내부에서 if문 분기를 통해 각 핸들러가 호출된다.
-## 핸들러를 호출한 Todo Component 는 자신의 id 값을 인수로 전달하며, 핸들러는 App Component의 state 내의
-## toDos객체배열중이 id 해당하는 isComplete 값을 변경하여 랜더링한다.
+### _changeComplete 와 _changeUncomplete 는 Todo comp 의 circle부분의 Onpress 이벤트의 핸들러이다.
+### onPress 이벤트는 우선 Todo component 내부의 메소드인  _onToggleComplete 를 호출하고
+### 두 메소드는 _onToggleComplete 함수 본체내부에서 if문 분기를 통해 각 핸들러가 호출된다.
+### 핸들러를 호출한 Todo Component 는 자신의 id 값을 인수로 전달하며, 핸들러는 App Component의 state 내의
+### toDos객체배열중이 id 해당하는 isComplete 값을 변경하여 랜더링한다.
 ```js
   _changeUncomplete = id => {          // Todo Component로부터 id값을 받아오고
     this.setState(prevState => {       // App Component의 기존 State값을 prevState인수로 받아와서
