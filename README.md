@@ -216,3 +216,23 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
   };
   ```
 
+  ### touchableOpacity 에서 이벤트가 실행될때 ScrollView 가 영향을 받아 튕기는 현상이 있는데 이를 제거한다.
+
+```js
+// onPress 이벤트와 연결된 핸들러메소드에 적용한 예
+  _onStartEditing = event => {
+    event.stopPropagation();
+    this.setState({isEditing: true});
+  };
+
+// TouchableOpacity 컴퍼넌트 내부에서 바로 프롭스메소드를 호출하는경우도 있는데 이경우 적용의 예
+<TouchableOpacity
+  onPressOut={event => {
+    event.stopPropagation;
+    onDeleteTodo(id);
+  }}>
+  <View style={styles.actionContainer}>
+    <Text>❌</Text>
+  </View>
+</TouchableOpacity>
+```
