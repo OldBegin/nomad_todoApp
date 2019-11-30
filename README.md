@@ -31,19 +31,21 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
     };
 ```
 
-2. 고유아이디를 자동으로 생성하는 패키지 추가
- - npm install uuid --save //add package from npm
- - import uuidv1 from 'uuid/v1'; // import in TodoApp
- - const ID = uuidvi() // 추출
- - const _object = { // 사용
+#### 2. 고유아이디를 자동으로 생성하는 패키지 추가
+```js
+ npm install uuid --save //add package from npm
+
+ import uuidv1 from 'uuid/v1'; // import in TodoApp
+ const ID = uuidvi() // 추출
+ const _object = { // 사용
     [ID]: {
       id: ID,
       name: name,
       tel: tel
     }
   }
-
-3. TextInput 으로 작성한 내용을 리스트에 추가
+```
+#### 3. TextInput 으로 작성한 내용을 리스트에 추가
 
 ```js
   /* todo컴퍼넌트에 넘겨줄 프롭스덩어리를 만들기위해 오브젝트(newTodoObject)를 생성해서 
