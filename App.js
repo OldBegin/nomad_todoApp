@@ -25,17 +25,17 @@ class App extends Component {
     };
   }
   componentDidMount = () => {
-    console.log('componentDidMount: ', this.state.loadedTodos);
+    console.log('componentDidMount was called and state is: ', this.state.loadedTodos);
     this._loadTodos();
   };
 
   render() {
     const {newTodo, loadedTodos, toDos} = this.state;
-    //console.log('todos in App:', toDos);
+    console.log('App start running', this.state);
     if (!loadedTodos) {
       return (
         <View style={styles.loadingContainer}>
-          <Text style={styles.loadingText}>Loding....</Text>
+          <Text style={styles.loadingText}>Loding........</Text>
         </View>
       );
     }
@@ -73,6 +73,7 @@ class App extends Component {
   }
   // Store data: state 의 toDos 오브젝트를 스트링으로 형변환하여 디스크에 저장 //
   _saveTodos = async newTodos => {
+    console.log('async _saveTodos() was called');
     try {
       console.log('saveTodos: ', this.state.loadedTodos);
       await AsyncStorage.setItem('toDos', JSON.stringify(newTodos));
@@ -83,18 +84,22 @@ class App extends Component {
 
   // Read data: 디스크에 저장된 스트링형태의 toDos를 오브젝트로 파싱하여 setState
   _loadTodos = async () => {
+    console.log('async _loadTodos() was called');
     try {
       const value = await AsyncStorage.getItem('toDos');
       if (value !== null) {
+        console.log('getting data from async Storage')
         const parsedTodos = JSON.parse(value);
         this.setState({loadedTodos: true, toDos: parsedTodos});
       }
+      this.setState({loadedTodos: true});
     } catch (err) {
       console.log(err);
     }
   };
 
   _todoUpdate = (id, updatedText) => {
+    console.log('_todoUpdate() was called');
     this.setState(prevState => {
       const newState = {
         ...prevState,
