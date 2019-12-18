@@ -7,11 +7,13 @@
 - 파일구조
 
 >src
->>Todo.js : 각 할일을 보여주기위한 컴퍼넌트
+>>components   
+>>>component.js : 뭐머하기 위한 컴퍼넌트  
+>>Todo.js : 각 할일을 보여주기위한 컴퍼넌트   
 >>Todos.js : 각 할일을 리스트하기 위한 컴퍼넌트
 >
 >App.js
-
+ 
 state
  >> `newTodo:`  
      - 이것   
