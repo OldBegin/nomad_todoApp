@@ -49,7 +49,7 @@ Todo.js
 >>_onFinishEditing  
 >>_onInputTodoText  
   
-
+  
 ## 
 ***11/21 집***
 
@@ -62,16 +62,13 @@ TextInput: Style function: 일부
 
 Todo-function: 토글하여 circle 및 텍스트 스타일 변경하기(Circle borderColor, textDecorationLine: 'line-through') / onPress 이벤트 핸들러(_onToggleComplete) 생성
 Todo-style: Action 버튼 스타일 코딩중
-
-***11/23 집***
-
+  
+  
 Todo-style: Action 버튼 2종(편집,삭제) 스타일 코딩완료
 Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 / onPress 이벤트 핸들러 2종( _onStartEdiging, _onFinishEditing) 생성
-
-***11/28 집***
-
+  
+  
 ## App-function: 
-
 1. 로딩중에 나타날 화면을 만들어 로딩중엔 로딩컴퍼넌트를 보여주고 로딩이 완료되면 메인컴퍼넌트를 보여주는 기능
 ```js  
 // 컴퍼넌트가 준비되면 호출되는 라이프사이클 미들웨어
@@ -148,7 +145,6 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
     {Object.values(toDos).map(todo => ( <Todo key={toDos.id} {...todo} /> )
 ```
 
-***11/29 회사***
 
 ## _deleteTodo 메소드:  
  - Todo comp 의 x OnPress 이벤트 핸들러
@@ -233,7 +229,7 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
     });
   };
   ```
-**11/29-집**
+  
 
 ## states 내용을 디스크에 저장하기
 - 강좌에서 사용하는 리엑트네이티브 내장 스토리지는 추후 제거될것이므로 아래 링크를 참조하여 
@@ -274,8 +270,8 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
     }
   };
   ```
-
-
+  
+  
 ## event.stopPropagation() 이벤트
 - touchableOpacity 에서 이벤트가 실행될때 ScrollView 가 영향을 받아 튕기는 현상이 있는데 이를 제거한다.
 
