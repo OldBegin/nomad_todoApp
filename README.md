@@ -11,7 +11,7 @@ App.js :
 > render
   >> `<textInput>`: 할일을 입력받는다.  
   >> `<Todo>`: todo 컴퍼넌트를 map을 이용하여 *ScrollView* 내부에 리스팅한다.  
-  
+>
 > 메소드  
   >> `_saveTodos`: state에 저장된 todo의 데이터객체(state.toDos)를 JSON형태로 변환하여 async storage에 저장하는 메소드(async storage는 스트링형태로만 저장된다.)  
   >> `_loadTodos`: 
