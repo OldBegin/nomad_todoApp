@@ -4,13 +4,16 @@
 유투버 nomed의 리엑트네이티브로 투두앱 만들기 - Build To Do App with React Native
 
 ## 앱 구조
-
-**파일구조**
+- 파일구조
 
 App.js:
 >state
  >> `newTodo:`  
+     - 이것   
+     - 저것   
  >> `loadedTodos:`  
+     - 이것  
+     - 저것  
  >> `toDos:` 
 >
 >render
@@ -248,6 +251,7 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
     }
   };
   ```
+
 
 ## event.stopPropagation() 이벤트
 - touchableOpacity 에서 이벤트가 실행될때 ScrollView 가 영향을 받아 튕기는 현상이 있는데 이를 제거한다.
