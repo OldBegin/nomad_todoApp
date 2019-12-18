@@ -6,10 +6,10 @@
 ## 앱 구조
 - 파일구조
 
->App.js
->Todo.js
-
-
+>App.js  
+>Todo.js  
+  
+  
 - 컴퍼넌트구조
 
 App.js   
@@ -31,6 +31,23 @@ App.js
 >>_setNewTodo  
 >>_deleteTodo  
 >>_addTodo  
+  
+
+Todo.js  
+>state  
+>>isEditing:  
+>>todoValue:  
+>  
+>render  
+>>complete Touchable.  
+>>edit Touchable.  
+>>delete Touchable.  
+>  
+>method  
+>>_onToggleComplete  
+>>_onStartEditing  
+>>_onFinishEditing  
+>>_onInputTodoText  
 
 
 ***11/21 집***
