@@ -125,9 +125,9 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
 ***11/29 회사***
 
 ## _deleteTodo 메소드:  
- **Todo comp 의 x OnPress 이벤트 핸들러**
- **Todo Component 는 App Component로부터 props로 넘겨받아 가지고있던 id값을 이 핸들러에 넘겨주고**
- **핸들러는 App의 state를 변경하여 해당 컴퍼넌트를 삭제하여 랜더링항.**
+ - Todo comp 의 x OnPress 이벤트 핸들러
+ - Todo Component 는 App Component로부터 props로 넘겨받아 가지고있던 id값을 이 핸들러에 넘겨주고
+ - 핸들러는 App의 state를 변경하여 해당 컴퍼넌트를 삭제하여 랜더링항.
 
 ```js
   _deleteTodo = id => {              // Todo Component로부터 id값을 인수로 넘겨받음.
@@ -187,7 +187,9 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
   };
   ```
 
-### 투두내용을 수정해서 적용했을때 업데이트하는 핸들러
+## _todoUpdate 메소드:
+- 투두내용을 수정해서 적용했을때 업데이트하는 핸들러
+
   ```js
    _todoUpdate = (id, updatedText) => {
     this.setState(prevState => {
@@ -205,15 +207,15 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
     });
   };
   ```
+**11/29-집**
 
-  ### 14. states 내용을 디스크에 저장하기
-  **11/29-집**
+## states 내용을 디스크에 저장하기
+- 강좌에서 사용하는 리엑트네이티브 내장 스토리지는 추후 제거될것이므로 아래 링크를 참조하여 
+- async-storage 패키지를 인스톨함
+- https://github.com/react-native-community/async-storage
 
-  #### 강좌에서 사용하는 리엑트네이티브 내장 스토리지는 추후 제거될것이므로 아래 링크를 참조하여 async-storage 패키지를 인스톨함
-  https://github.com/react-native-community/async-storage
-
+#### 패키지설치
   ```js
-  패키지설치
   npm add @react-native-community/async-storage --save
 
   링크
@@ -247,7 +249,8 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
   };
   ```
 
-  ### touchableOpacity 에서 이벤트가 실행될때 ScrollView 가 영향을 받아 튕기는 현상이 있는데 이를 제거한다.
+## event.stopPropagation() 이벤트
+- touchableOpacity 에서 이벤트가 실행될때 ScrollView 가 영향을 받아 튕기는 현상이 있는데 이를 제거한다.
 
 ```js
 // onPress 이벤트와 연결된 핸들러메소드에 적용한 예
