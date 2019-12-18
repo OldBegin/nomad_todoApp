@@ -25,7 +25,10 @@ class App extends Component {
     };
   }
   componentDidMount = () => {
-    console.log('componentDidMount was called and state is: ', this.state.loadedTodos);
+    console.log(
+      'componentDidMount was called and state is: ',
+      this.state.loadedTodos,
+    );
     this._loadTodos();
   };
 
@@ -88,7 +91,7 @@ class App extends Component {
     try {
       const value = await AsyncStorage.getItem('toDos');
       if (value !== null) {
-        console.log('getting data from async Storage')
+        console.log('getting data from async Storage');
         const parsedTodos = JSON.parse(value);
         this.setState({loadedTodos: true, toDos: parsedTodos});
       }
