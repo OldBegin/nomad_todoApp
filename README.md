@@ -25,14 +25,14 @@ App.js:
 Todo.js
 
 
-**11/21 집**
+***11/21 집***
 
 StatusBar:
 main View: Style
 Card View: Style
 TextInput: Style function: 일부
 
-**11/22 집**
+***11/22 집***
 
 Todo-function: 토글하여 circle 및 텍스트 스타일 변경하기(Circle borderColor, textDecorationLine: 'line-through') / onPress 이벤트 핸들러(_onToggleComplete) 생성
 Todo-style: Action 버튼 스타일 코딩중
@@ -42,7 +42,7 @@ Todo-style: Action 버튼 스타일 코딩중
 Todo-style: Action 버튼 2종(편집,삭제) 스타일 코딩완료
 Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 / onPress 이벤트 핸들러 2종( _onStartEdiging, _onFinishEditing) 생성
 
-**11/28 집**
+***11/28 집***
 
 ### App-function: App의 TextInput으로 text를 추가하면 투두가 리스트에 추가됨. - (본앱의 주 기능)
 
@@ -122,7 +122,7 @@ Todo-function: 편집✏️버튼과 체크 ✅버튼 토글기능 코딩완료 
     {Object.values(toDos).map(todo => ( <Todo key={toDos.id} {...todo} /> )
 ```
 
-**11/29 회사**
+***11/29 회사***
 
 ### _deleteTodo 메소드는 Todo comp 의 x OnPress 이벤트 핸들러임 
 ### Todo Component 는 App Component로부터 props로 넘겨받아 가지고있던 id값을 이 핸들러에 넘겨주고
