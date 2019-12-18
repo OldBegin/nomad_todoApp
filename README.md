@@ -6,33 +6,11 @@
 ## 앱 구조
 - 파일구조
 
->App.js:  
->>`state`  
->>   -  newTodo  
->>   -  loadedTodos  
->>   -  todos[]  
+>src
+>>Todo.js : 각 할일을 보여주기위한 컴퍼넌트
+>>Todos.js : 각 할일을 리스트하기 위한 컴퍼넌트
 >
->>`render`  
->>`메소드`  
->
->src    
->>Todos.js  
->>>`state`  
->>>  -  a  
->>>  -  b  
->>>  -  c  
->>>
->>>`render`  
->>>  -  a  
->>>  -  b  
->>>  -  c  
->>>`메소드`  
->>>  -  a  
->>>  -  b  
->>>  -  c  
->>
->
->>Todo.js
+>App.js
 
 state
  >> `newTodo:`  
