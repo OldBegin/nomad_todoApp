@@ -4,13 +4,13 @@
 유투버 nomed의 리엑트네이티브로 투두앱 만들기 - Build To Do App with React Native
 
 ## 앱 구조
-- 파일구조
+#### 파일구조
 
 >App.js  
 >Todo.js  
   
   
-- 컴퍼넌트구조
+#### 컴퍼넌트구조
 
 App.js   
 >state  
@@ -32,7 +32,7 @@ App.js
 >>_deleteTodo  
 >>_addTodo  
   
-
+  
 Todo.js  
 >state  
 >>isEditing:  
@@ -48,8 +48,9 @@ Todo.js
 >>_onStartEditing  
 >>_onFinishEditing  
 >>_onInputTodoText  
+  
 
-
+## 
 ***11/21 집***
 
 StatusBar:
