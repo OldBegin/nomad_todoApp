@@ -6,8 +6,35 @@
 ## 앱 구조
 - 파일구조
 
-App.js:
->state
+>App.js:  
+>>`state`  
+>>   -  newTodo  
+>>   -  loadedTodos  
+>>   -  todos[]  
+>
+>>`render`  
+>>`메소드`  
+>
+>src    
+>>Todos.js  
+>>>`state`  
+>>>  -  a  
+>>>  -  b  
+>>>  -  c  
+>>>
+>>>`render`  
+>>>  -  a  
+>>>  -  b  
+>>>  -  c  
+>>>`메소드`  
+>>>  -  a  
+>>>  -  b  
+>>>  -  c  
+>>
+>
+>>Todo.js
+
+state
  >> `newTodo:`  
      - 이것   
      - 저것   
