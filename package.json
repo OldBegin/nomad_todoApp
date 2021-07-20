@@ -13,7 +13,7 @@
     "@react-native-community/async-storage": "1.6.3",
     "proptypes": "1.1.0",
     "react": "16.9.0",
-    "react-native": "0.61.4",
+    "react-native": "0.62.3",
     "react-native-webview": "7.5.2",
     "uuid": "3.3.3"
   },
